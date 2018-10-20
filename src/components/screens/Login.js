@@ -8,7 +8,7 @@ class Login extends Component {
 
   render() {
     const { error,loading } = this.props
-
+    console.log('login')
     return (
       <div>
         <h1>Login</h1>

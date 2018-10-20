@@ -2,7 +2,6 @@ import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL } from '.
 
 const initialState = {
   token: null,
-  user: null,
   loading: false,
   error: null,
 }

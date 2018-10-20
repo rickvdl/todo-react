@@ -10,8 +10,16 @@ import { login } from '../../actions'
 class LoginContainer extends React.Component {
 
   render() {
+    console.warn(this.loggedIn())
+
     return (
-      <Route exact path="/" render={() => this.loggedIn() ? <Redirect to="/tasks"/> : <LoginScreen {...this.props} />} />
+      <Route exact path="/">
+        {this.loggedIn() ?
+          <Redirect to="/tasks"/>
+          :
+          <LoginScreen {...this.props} />
+        }
+      </Route>
     )
   }
 

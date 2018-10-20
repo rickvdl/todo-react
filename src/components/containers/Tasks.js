@@ -11,13 +11,13 @@ class TasksContainer extends React.Component {
 
   render() {
     return (
-      <Route path="/tasks" render={() => (
-        this.loggedIn() ? (
+      <Route path="/tasks">
+        {this.loggedIn() ?
           <TasksScreen {...this.props} />
-        ) : (
+          :
           <Redirect to="/"/>
-        )
-      )}/>
+        }
+      </Route>
     )
   }
 
