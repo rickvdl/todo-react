@@ -7,8 +7,8 @@ import LoginForm from '../forms/LoginForm'
 class Login extends Component {
 
   render() {
-    const { error } = this.props
-    console.log(error)
+    const { error,loading } = this.props
+
     return (
       <div>
         <h1>Login</h1>

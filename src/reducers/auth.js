@@ -1,20 +1,23 @@
-import { LOGIN, LOGIN_LOADING, LOGIN_SUCCESS, LOGIN_FAIL } from '../actions'
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL } from '../actions'
 
 const initialState = {
   token: null,
-  user: null
+  user: null,
+  loading: false,
+  error: null,
 }
 
 export default (state = initialState, action: Object) => {
   switch (action.type) {
   case LOGIN: 
     return {...state}
-  case LOGIN_LOADING:
-    return {...state, loading: true}
   case LOGIN_SUCCESS:
-    return {...state, loading: false, token: action.payload.token}
+    return {...state, token: action.payload.data.token}
   case LOGIN_FAIL:
-    return {...state, loading: false, error: action.payload.error}
+    return {...state, error: action.error.message}
+  case LOGOUT_SUCCESS:
+  case LOGOUT_FAIL:
+    return {...state, token: null}
   default:
     return state
   }

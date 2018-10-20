@@ -5,6 +5,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
+import { getTasks, logout } from '../../actions'
 
 class TasksContainer extends React.Component {
 
@@ -12,7 +13,7 @@ class TasksContainer extends React.Component {
     return (
       <Route path="/tasks" render={() => (
         this.loggedIn() ? (
-          <TasksScreen />
+          <TasksScreen {...this.props} />
         ) : (
           <Redirect to="/"/>
         )
@@ -29,9 +30,15 @@ class TasksContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    ...state.tasks,
   }
 }
 
+const mapDispatchToProps = {
+  getTasks,
+  logout
+}
 
-export default connect(mapStateToProps)(TasksContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(TasksContainer)
