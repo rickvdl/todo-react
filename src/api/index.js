@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { REMOVE_TOKEN } from '../actions'
 
 export const api = axios.create({
   baseURL: 'http://127.0.0.1:3001',
@@ -25,6 +26,14 @@ export const apiMiddlewareOptions = {
           return response
         },
         error: ({ dispatch }, error) => {
+          if (error.response === undefined) {
+            return Promise.reject(error)
+          }
+
+          if (error.response.status === 401) {
+            dispatch({type: REMOVE_TOKEN})
+          }
+
           let message = error.message
           if (error.response.data.error.message) {
             message = error.response.data.error.message

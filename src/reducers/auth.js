@@ -1,7 +1,7 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL } from '../actions'
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL, REMOVE_TOKEN } from '../actions'
 
 const initialState = {
-  token: null,
+  token: 'a',
   loading: false,
   error: null,
 }
@@ -15,6 +15,7 @@ export default (state = initialState, action: Object) => {
   case LOGIN_FAIL:
     return {...state, error: action.error.message}
   case LOGOUT_SUCCESS:
+  case REMOVE_TOKEN:
   case LOGOUT_FAIL:
     return {...state, token: null}
   default:
