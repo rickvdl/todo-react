@@ -1,19 +1,18 @@
 import React from 'react'
-import TasksScreen from '../screens/Tasks'
+import NewTaskScreen from '../../screens/Tasks/new'
 import { connect } from 'react-redux'
 import {
   Route,
   Redirect
 } from 'react-router-dom'
-import { getTasks, logout } from '../../actions'
 
 class TasksContainer extends React.Component {
 
   render() {
     return (
-      <Route path="/tasks">
+      <Route exact path="/tasks/new">
         {this.loggedIn() ?
-          <TasksScreen {...this.props} />
+          <NewTaskScreen {...this.props} />
           :
           <Redirect to="/"/>
         }
@@ -36,9 +35,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  getTasks,
-  logout
-}
 
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksContainer)

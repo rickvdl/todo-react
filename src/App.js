@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Login from './components/containers/Login'
 import Tasks from './components/containers/Tasks'
+import Newtask from './components/containers/Tasks/new'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Fragment>
               <Login />
               <Tasks />
+              <Newtask />
             </Fragment>
           </BrowserRouter>
         </Provider>
