@@ -1,3 +1,5 @@
+import { GET_TASKS } from './tasks'
+
 export const COMPLETE_TASK = 'COMPLETE_TASK'
 export const COMPLETE_TASK_SUCCESS = 'COMPLETE_TASK_SUCCESS'
 export const COMPLETE_TASK_FAIL = 'COMPLETE_TASK_FAIL'
@@ -5,6 +7,10 @@ export const COMPLETE_TASK_FAIL = 'COMPLETE_TASK_FAIL'
 export const UNCOMPLETE_TASK = 'UNCOMPLETE_TASK'
 export const UNCOMPLETE_TASK_SUCCESS = 'UNCOMPLETE_TASK_SUCCESS'
 export const UNCOMPLETE_TASK_FAIL = 'UNCOMPLETE_TASK_FAIL'
+
+export const DELETE_TASK = 'DELETE_TASK'
+export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
+export const DELETE_TASK_FAIL = 'DELETE_TASK_FAIL'
 
 export const completeTask = (id) => {
   return {
@@ -14,7 +20,6 @@ export const completeTask = (id) => {
         url: `/task/${id}/complete`,
         method: 'post'
       },
-      test: 'ja'
     }
   }
 }
@@ -27,7 +32,23 @@ export const uncompleteTask = (id) => {
         url: `/task/${id}/uncomplete`,
         method: 'post'
       },
-      test: 'ja'
+    }
+  }
+}
+
+export const deleteTask = (id) => {
+  return {
+    type: DELETE_TASK,
+    payload: {
+      request: {
+        url: `/task/${id}`,
+        method: 'delete'
+      },
+    },
+    options: {
+      onSuccess({ dispatch }) {
+        dispatch({ type: 'GET_TASKS' });
+     },
     }
   }
 }

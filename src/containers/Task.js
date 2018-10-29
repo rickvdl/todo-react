@@ -1,6 +1,6 @@
 import TaskScreen from '../screens/Task'
 import { connect } from 'react-redux'
-import { getTasks, completeTask, uncompleteTask } from '../actions'
+import { getTasks, completeTask, uncompleteTask, deleteTask } from '../actions'
 
 const mapStateToProps = (state, props) => {
   return {
@@ -11,7 +11,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = {
   getTasks,
   completeTask,
-  uncompleteTask
+  uncompleteTask,
+  deleteTask
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskScreen)

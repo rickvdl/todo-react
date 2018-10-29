@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import {
   withRouter,
-  NavLink
+  NavLink,
+  Redirect
 } from 'react-router-dom'
 
 class Task extends Component {
 
   state = {
     loadedTasks: false,
+    deleting: false
   }
 
   componentDidMount() {
@@ -18,10 +20,14 @@ class Task extends Component {
   }
 
   render() {
-    const { loadedTasks } = this.state
+    const { loadedTasks, deleting } = this.state
     const { loading, error } = this.props
     
     const task = this.getTask()
+    
+    if (deleting && !loading) {
+      return (<Redirect to={'/'}/>)
+    }
     
     return (
       <div>
@@ -38,6 +44,7 @@ class Task extends Component {
             <p>{task.name}</p>
             
             <button onClick={() => this.onClickToggleComplete()}>{task.completed ? 'Uncomplete' : 'Complete'}</button>
+            <button onClick={() => this.onClickDelete()}>Delete</button>
           </Fragment>
         }
 
@@ -63,6 +70,19 @@ class Task extends Component {
     } else {
       completeTask(task.id)
     }
+  }
+
+  onClickDelete() {
+    const { deleteTask } = this.props
+
+    const task = this.getTask()
+    if (!task) {
+      return
+    }
+
+    this.setState({deleting: true})
+
+    deleteTask(task.id)
   }
 }
 

@@ -23,7 +23,7 @@ class Tasks extends Component {
 
   render() {
     const { loading, error, tasks } = this.props
-
+    
     return (
       <div>
         <h1>Tasks</h1>
