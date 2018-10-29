@@ -9,3 +9,19 @@ export const loginPassword = value => {
   
   return value.length < 5 ? 'Password required' : undefined
 }
+
+export const taskName = value => {
+  if (value === undefined) {
+    return undefined
+  }
+
+  if (String(value).length < 2) {
+    return 'Must be more than 2 characters'
+  }
+
+  if (String(value).length > 32) {
+    return 'Must be less than 32 characters'
+  }
+
+  return undefined
+}

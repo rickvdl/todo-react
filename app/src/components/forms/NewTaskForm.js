@@ -1,39 +1,39 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Form, FormGroup, Button } from 'reactstrap'
+import Input from './Input'
+import { taskName } from './validators'
 
 class NewTaskForm extends React.Component {
 
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit, valid, invalid, pristine, submitting } = this.props
 
     return (
       <Form onSubmit={handleSubmit}>
         <input type='hidden' value='something'/>
         <FormGroup>
-          <Label for="name">Name</Label>
-          <Input
-            type="text" 
-            name="name"
-            placeholder="Clean the dishes"
-            component={'input'}
-            tag={Field}
-            autoComplete={'off'}
+          <Field 
+            type={'text'}
+            name={'name'}
+            label={'Name'}
+            placeholder={'Clean the dishes'}
+            component={Input}
+            validate={taskName}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="description">Description</Label>
-          <Input
-            name="description"
-            component={'textarea'}
-            tag={Field}
-            autoComplete={'off'}
+          <Field 
+            type={'textarea'}
+            name={'description'}
+            label={'Description'}
             placeholder={'Optional description'}
+            component={Input}
           />
         </FormGroup>
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <Button color="primary">Create task</Button>
+          <Button color="primary" disabled={pristine || invalid || submitting || !valid}>Create task</Button>
           <NavLink id={'backToTasksButton'} to="/"><Button outline  color="success">Back</Button></NavLink>
         </div>
       </Form>
