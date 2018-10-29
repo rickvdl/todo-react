@@ -17,7 +17,7 @@ class Login extends Component {
     
     return (
       <div id={'login'}>
-        <Card body>
+        <Card body id={'loginFormContainer'}>
           <h1>Login</h1>
           {auth.error &&
             <Alert color="danger">{auth.error}</Alert>
