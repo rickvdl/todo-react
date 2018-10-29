@@ -11,7 +11,7 @@ class NewTask extends Component {
     return (
       <div>
         <h1>New task</h1>
-        <NavLink to="/tasks">Tasks</NavLink>
+        <NavLink to="/">Tasks</NavLink>
       </div>
     )
   }

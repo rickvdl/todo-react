@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import {
   Route,
-  withRouter
+  withRouter,
+  Switch
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AuthenticatedRoute from './components/AuthenticatedRoute'
 import Login from './containers/Login'
 import Tasks from './containers/Tasks'
 import NewTask from './containers/Tasks/new'
+import NotFound from './containers/NotFound'
 
 class App extends Component {
   render() {
@@ -15,11 +17,12 @@ class App extends Component {
     const authenticated = token !== null
 
     return (
-      <Fragment>
+      <Switch>
         <Route path='/login' component={Login}/>
         <AuthenticatedRoute authenticated={authenticated} path='/' exact component={Tasks}/>
         <AuthenticatedRoute authenticated={authenticated} path='/new' component={NewTask}/>
-      </Fragment>
+        <Route path='/' component={NotFound}/>
+      </Switch>
     )
   }
 }

@@ -26,7 +26,7 @@ class Tasks extends Component {
     return (
       <div>
         <h1>Tasks</h1>
-        <NavLink to="/tasks/new">New</NavLink>
+        <NavLink to="/new">New</NavLink>
         <button onClick={() => this.props.logout()}>Logout</button>
         {error &&
           <h3>{error}</h3>
