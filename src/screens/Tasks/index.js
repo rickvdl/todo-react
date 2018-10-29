@@ -5,11 +5,12 @@ import {
 } from 'react-router-dom'
 
 const Task = props => {
-  const { name } = props
+  const { id, name, completed } = props
+  const url = `/${id}`
 
   return (
     <div>
-      {name}
+      <NavLink to={url}>{name} {completed ? 'X' : ''}</NavLink>
     </div>
   )
 }

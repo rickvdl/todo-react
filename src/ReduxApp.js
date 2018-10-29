@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import AuthenticatedRoute from './components/AuthenticatedRoute'
 import Login from './containers/Login'
 import Tasks from './containers/Tasks'
+import Task from './containers/Task'
 import NewTask from './containers/Tasks/new'
 import NotFound from './containers/NotFound'
 
@@ -21,6 +22,7 @@ class App extends Component {
         <Route path='/login' component={Login}/>
         <AuthenticatedRoute authenticated={authenticated} path='/' exact component={Tasks}/>
         <AuthenticatedRoute authenticated={authenticated} path='/new' component={NewTask}/>
+        <AuthenticatedRoute authenticated={authenticated} path='/:id' component={Task}/>
         <Route path='/' component={NotFound}/>
       </Switch>
     )
