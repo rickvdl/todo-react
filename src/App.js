@@ -1,13 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import {
   BrowserRouter,
-  Route,
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
-import Login from './components/containers/Login'
-import Tasks from './components/containers/Tasks'
-import Newtask from './components/containers/Tasks/new'
+import ReduxApp from './ReduxApp'
 
 class App extends Component {
   render() {
@@ -15,11 +12,7 @@ class App extends Component {
       <div className="App">
         <Provider store={store}>
           <BrowserRouter>
-            <Fragment>
-              <Login />
-              <Tasks />
-              <Newtask />
-            </Fragment>
+            <ReduxApp />
           </BrowserRouter>
         </Provider>
       </div>

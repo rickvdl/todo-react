@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import {
+  Redirect,
   withRouter
 } from 'react-router-dom'
-import LoginForm from '../forms/LoginForm'
+import LoginForm from '../components/forms/LoginForm'
 
 class Login extends Component {
 
   render() {
-    const { error,loading } = this.props
-    console.log('login')
+    const { error, loading, auth } = this.props
+
+    if (auth.token) {
+      return (<Redirect to={'/'}/>)
+    }
+    
     return (
       <div>
         <h1>Login</h1>

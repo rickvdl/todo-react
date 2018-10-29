@@ -1,7 +1,7 @@
 import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL, REMOVE_TOKEN } from '../actions'
 
 const initialState = {
-  token: 'a',
+  token: null,
   loading: false,
   error: null,
 }

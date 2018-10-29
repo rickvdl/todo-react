@@ -11,11 +11,7 @@ class TasksContainer extends React.Component {
   render() {
     return (
       <Route exact path="/tasks/new">
-        {this.loggedIn() ?
-          <NewTaskScreen {...this.props} />
-          :
-          <Redirect to="/"/>
-        }
+        <NewTaskScreen {...this.props} />
       </Route>
     )
   }
