@@ -4,9 +4,10 @@ import {
   withRouter
 } from 'react-router-dom'
 import LoginForm from '../components/forms/LoginForm'
+import { Alert } from 'reactstrap'
 
 class Login extends Component {
-
+  
   render() {
     const { auth } = this.props
 
@@ -17,12 +18,10 @@ class Login extends Component {
     return (
       <div>
         <h1>Login</h1>
-
-        <LoginForm onSubmit={(values) => this.submitForm(values)} />
-
         {auth.error &&
-          <p>{auth.error}</p>
+          <Alert color="danger">{auth.error}</Alert>
         }
+        <LoginForm onSubmit={(values) => this.submitForm(values)} />
       </div>
     )
   }

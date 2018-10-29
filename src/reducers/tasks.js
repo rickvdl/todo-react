@@ -21,14 +21,14 @@ export default (state = initialState, action: Object) => {
   case GET_TASKS: 
     return {...state}
   case GET_TASKS_SUCCESS:
-    return {...state, tasks: sortTasks(action.payload.data)}
+    return {...state, tasks: sortTasks(action.payload.data), error: null}
   case GET_TASKS_FAIL:
-    return {...state, error: action.error}
+    return {...state, error: action.error.message}
   case COMPLETE_TASK_SUCCESS:
   case UNCOMPLETE_TASK_SUCCESS:
     const completedTaskId = action.payload.data.id
     const completed = action.type === COMPLETE_TASK_SUCCESS
-    return {...state, tasks: state.tasks.map(task => task.id == completedTaskId ? {...task, completed} : task)}
+    return {...state, tasks: state.tasks.map(task => task.id == completedTaskId ? {...task, completed} : task), error: null}
   case COMPLETE_TASK_FAIL:
   case UNCOMPLETE_TASK_FAIL:
   case DELETE_TASK_FAIL:
