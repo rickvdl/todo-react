@@ -44,10 +44,20 @@ export default (state = initialState, action: Object) => {
 const sortTasks = (tasks) => {
   return tasks.sort((a, b) => {
     if (a.completed === b.completed) {
-      return a.createdAt >= b.createdAt;
+      return 0;
     }
 
     if (a.completed && !b.completed) {
+      return 1;
+    }
+
+    return -1;
+  }).sort((a, b) => {
+    if (a.completed !== b.completed) {
+      return 0;
+    }
+    
+    if (a.createdAt >= b.createdAt) {
       return -1;
     }
 

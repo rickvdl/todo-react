@@ -1,6 +1,9 @@
 body {
-  margin: 25px;
   background-image: linear-gradient(to right, #27ae60, #1abc9c);
+}
+
+#container {
+  margin: 25px;
 }
 
 table tr > td {
