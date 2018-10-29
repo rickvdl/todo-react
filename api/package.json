@@ -1,0 +1,36 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Rick van der Linden <rickvdl@me.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-polyfill": "^6.26.0",
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "convict": "^4.4.0",
+    "cors": "^2.8.4",
+    "email-validator": "^2.0.4",
+    "express": "^4.16.4",
+    "express-bearer-token": "^2.2.0",
+    "express-decorators": "^1.2.1",
+    "http-errors": "^1.7.1",
+    "http-errors-express": "^3.1.0",
+    "node-localstorage": "^1.3.1",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js --exec babel-node",
+    "build": "babel --copy-files src --out-dir dist",
+    "docker:build": "yarn build && docker build -t todo-api:latest .",
+    "docker:run": "docker run -d -p 3001:3001 -d todo-api:latest",
+    "start": "NODE_ENV=production node index.js"
+  }
+}
