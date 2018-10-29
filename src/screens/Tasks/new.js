@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import {
   withRouter,
-  NavLink
 } from 'react-router-dom'
 import NewTaskForm from '../../components/forms/NewTaskForm'
+import Screen from '../../components/Screen'
+import { Card } from 'reactstrap'
 
 class NewTask extends Component {
 
   render() {
     return (
-      <div>
-        <h1>New task</h1>
-        <NewTaskForm onSubmit={(values) => this.submitForm(values)}/>
-        <NavLink to="/">Tasks</NavLink>
-      </div>
+      <Screen>
+        <div id={'newTask'}>
+          <Card id={'newTaskContainer'}>
+            <h1>New task</h1>
+            <NewTaskForm onSubmit={(values) => this.submitForm(values)}/>
+          </Card>
+        </div>
+      </Screen>
     )
   }
 

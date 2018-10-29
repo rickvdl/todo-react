@@ -11,30 +11,39 @@ table tr > td {
 }
 
 #login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: calc(100vh - 50px);
+  align-items: center;
 }
 
-#tasks {
+#login, #tasks, #newTask, #task {
   display: flex;
   justify-content: center;
+}
+
+#newTaskContainer, #taskContainer {
+  width: 50%;
+  padding: 25px;
 }
 
 #newTaskButton {
   margin-left: 10px;
 }
 
+@media (max-width: 576px) { 
+  #tasksContainer, #newTaskContainer, #taskContainer{
+    width: 100%;
+  }
+}
+
 @media (min-width: 576px) { 
-  #loginFormContainer, #tasksContainer {
-    max-width: 100%;
+  #loginFormContainer, #tasksContainer, #newTaskContainer, #taskContainer {
+    width: 100%;
   }
 }
 
 @media (min-width: 768px) { 
-  #loginFormContainer, #tasksContainer {
-    max-width: 75%;
+  #loginFormContainer, #tasksContainer, #newTaskContainer, #taskContainer {
+    width: 75%;
   }
 }
 

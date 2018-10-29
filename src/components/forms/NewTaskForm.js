@@ -1,5 +1,7 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
 class NewTaskForm extends React.Component {
 
@@ -7,17 +9,34 @@ class NewTaskForm extends React.Component {
     const { handleSubmit } = this.props
 
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <Field name="name" component="input" type="text" />
+      <Form onSubmit={handleSubmit}>
+        <input type='hidden' value='something'/>
+        <FormGroup>
+          <Label for="name">Name</Label>
+          <Input
+            type="text" 
+            name="name"
+            placeholder="Clean the dishes"
+            component={'input'}
+            tag={Field}
+            autoComplete={'off'}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="description">Description</Label>
+          <Input
+            name="description"
+            component={'textarea'}
+            tag={Field}
+            autoComplete={'off'}
+            placeholder={'Optional description'}
+          />
+        </FormGroup>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <Button color="primary">Create task</Button>
+          <NavLink id={'backToTasksButton'} to="/"><Button outline  color="success">Back</Button></NavLink>
         </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <Field name="description" component="textarea" />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      </Form>
     )
   }
 }

@@ -4,6 +4,8 @@ import {
   NavLink,
   Redirect
 } from 'react-router-dom'
+import Screen from '../components/Screen'
+import { Card, Button } from 'reactstrap'
 
 class Task extends Component {
 
@@ -30,26 +32,39 @@ class Task extends Component {
     }
     
     return (
-      <div>
-        {loading &&
-          <p>Laden...</p>
-        }
+      <Screen>
+        <div id={'task'}>
+          <Card id={'taskContainer'}>
+            {loading &&
+              <p>Laden...</p>
+            }
 
-        {(loadedTasks && !task) && 
-          <p>Task not found</p>
-        }
+            {(loadedTasks && !task) && 
+              <p>Task not found</p>
+            }
 
-        {task &&
-          <Fragment>
-            <p>{task.name}</p>
+            {task &&
+              <Fragment>
+                <h2>{task.name}</h2>
+                <hr />
+                <p>{task.description}</p>
+              </Fragment>
+            }
             
-            <button onClick={() => this.onClickToggleComplete()}>{task.completed ? 'Uncomplete' : 'Complete'}</button>
-            <button onClick={() => this.onClickDelete()}>Delete</button>
-          </Fragment>
-        }
-
-        <NavLink to={'/'}>Terug</NavLink>
-      </div>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+              {task &&
+                <div>
+                  <Button color={'danger'} onClick={() => this.onClickDelete()}>Delete</Button>
+                  <Button color={task.completed ? 'warning' : 'success'} style={{marginLeft: 10}} onClick={() => this.onClickToggleComplete()}>{task.completed ? 'Uncomplete' : 'Complete'}</Button>
+                </div>
+              }
+              <div>
+                <NavLink to={'/'}><Button outline  color="success">Back</Button></NavLink>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </Screen>
     )
   }
 
