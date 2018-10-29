@@ -14,7 +14,7 @@ class NewTaskForm extends React.Component {
       <Form onSubmit={handleSubmit}>
         <input type='hidden' value='something'/>
         <FormGroup>
-          <Field 
+          <Field
             type={'text'}
             name={'name'}
             label={'Name'}
