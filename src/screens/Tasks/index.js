@@ -6,7 +6,7 @@ import {
 import { Table } from 'reactstrap'
 import Task from '../../components/Task'
 import Screen from '../../components/Screen'
-import { Card } from 'reactstrap'
+import { Card, Button } from 'reactstrap'
 
 class Tasks extends Component {
 
@@ -21,7 +21,7 @@ class Tasks extends Component {
       <Screen>
         <div id={'tasks'}>
           <Card id={'tasksContainer'} body>
-            <h1>Tasks</h1>
+            <h1>Tasks <NavLink id={'newTaskButton'} to="/task/new"><Button outline size={'sm'} color="success">+ New task</Button></NavLink></h1>
               {error &&
                 <h3>{error}</h3>
               }
@@ -30,9 +30,9 @@ class Tasks extends Component {
                 <Table hover={true}>
                   <thead>
                     <tr>
-                      <th>#</th>
                       <th>Title</th>
                       <th>Status</th>
+                      <th>Created</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -40,8 +40,6 @@ class Tasks extends Component {
                   </tbody>
                 </Table>
               }
-            <NavLink to="/task/new">New</NavLink>
-            <button onClick={() => this.props.logout()}>Logout</button>
           </Card>
         </div>
       </Screen>
