@@ -8,6 +8,8 @@ export const LOGOUT_FAIL = 'LOGOUT_FAIL'
 
 export const REMOVE_TOKEN = 'REMOVE_TOKEN'
 
+export const SET_TOKEN = 'SET_TOKEN'
+
 export const login = (email, password) => {
   return {
     type: LOGIN,
@@ -32,6 +34,15 @@ export const logout = () => {
         url: '/token',
         method: 'delete',
       }
+    }
+  }
+}
+
+export const setToken = (token) => {
+  return {
+    type: SET_TOKEN,
+    payload: {
+      token
     }
   }
 }

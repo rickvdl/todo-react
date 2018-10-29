@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import {
   Route,
   withRouter,
@@ -11,19 +11,31 @@ import Tasks from './containers/Tasks'
 import Task from './containers/Task'
 import NewTask from './containers/Tasks/new'
 import NotFound from './containers/NotFound'
+import { setToken } from './actions'
 
 class App extends Component {
+  
+  componentDidMount() {
+    this.props.setToken(localStorage.getItem('token'))
+  }
+
   render() {
     const { token } = this.props
-    const authenticated = token !== null
+    const authenticated = token !== 'null' && token !== null
 
     return (
       <Switch>
-        <Route path='/login' component={Login}/>
-        <AuthenticatedRoute authenticated={authenticated} path='/' exact component={Tasks}/>
-        <AuthenticatedRoute authenticated={authenticated} path='/new' component={NewTask}/>
-        <AuthenticatedRoute authenticated={authenticated} path='/:id' component={Task}/>
-        <Route path='/' component={NotFound}/>
+        {!authenticated &&
+          <Route path='/' component={Login}/>
+        }
+        {authenticated &&
+          <Switch>
+            <AuthenticatedRoute authenticated={authenticated} path='/' exact component={Tasks}/>
+            <AuthenticatedRoute authenticated={authenticated} path='/task/new' component={NewTask}/>
+            <AuthenticatedRoute authenticated={authenticated} path='/task/:id' component={Task}/>
+            <Route path='/' component={NotFound}/>
+          </Switch>
+        }
       </Switch>
     )
   }
@@ -35,4 +47,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App))
+const mapDispatchToProps = {
+  setToken
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

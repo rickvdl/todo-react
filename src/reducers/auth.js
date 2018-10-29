@@ -1,19 +1,21 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL, REMOVE_TOKEN } from '../actions'
+import { SET_TOKEN, LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL, REMOVE_TOKEN } from '../actions'
 
 const initialState = {
-  token: localStorage.getItem('token') || null,
+  token: null,
   loading: false,
   error: null,
 }
 
 export default (state = initialState, action: Object) => {
   switch (action.type) {
+  case SET_TOKEN:
+    return {...state, token: action.payload.token}
   case LOGIN: 
     return {...state}
   case LOGIN_SUCCESS:
     const { token } = action.payload.data
     setToken(token)
-    return {...state, token}
+    return {...state, token, error: null}
   case LOGIN_FAIL:
     removeToken()
     return {...state, error: action.error.message}
