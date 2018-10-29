@@ -26,7 +26,7 @@ class Tasks extends Component {
                 <h3>{error}</h3>
               }
 
-              {tasks.length > 0 &&
+              {tasks.length > 0 ?
                 <Table hover={true}>
                   <thead>
                     <tr>
@@ -39,6 +39,15 @@ class Tasks extends Component {
                     {tasks.map(task => <Task key={String(task.id)} {...task}/>)}
                   </tbody>
                 </Table>
+                :
+                <div>
+                  <hr />
+                  <div style={{marginTop: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <h4>You don't have any tasks</h4>
+                    <br />
+                    <NavLink to="/task/new"><Button color="primary">Create a new task</Button></NavLink>
+                  </div>
+                </div>
               }
           </Card>
         </div>

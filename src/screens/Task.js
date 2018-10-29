@@ -5,7 +5,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import Screen from '../components/Screen'
-import { Card, Button } from 'reactstrap'
+import { Card, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 class Task extends Component {
 
@@ -47,14 +47,18 @@ class Task extends Component {
               <Fragment>
                 <h2>{task.name}</h2>
                 <hr />
-                <p>{task.description}</p>
+                {task.description ?
+                  <p>{task.description}</p>
+                  :
+                  <i>This task has no description</i>
+                }
               </Fragment>
             }
             
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: 20}}>
               {task &&
                 <div>
-                  <Button color={'danger'} onClick={() => this.onClickDelete()}>Delete</Button>
+                  <Button color={'danger'} onClick={() => this.openModal()}>Delete</Button>
                   <Button color={task.completed ? 'warning' : 'success'} style={{marginLeft: 10}} onClick={() => this.onClickToggleComplete()}>{task.completed ? 'Uncomplete' : 'Complete'}</Button>
                 </div>
               }
@@ -64,6 +68,18 @@ class Task extends Component {
             </div>
           </Card>
         </div>
+        {task &&
+          <Modal isOpen={this.state.modalOpen} toggle={() => this.closeModal()}>
+            <ModalHeader>Delete task</ModalHeader>
+            <ModalBody>
+              Are you sure that you want to delete task <q>{task.name}</q>?
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={() => this.deleteTask()}>Yes!</Button>
+              <Button color="secondary" onClick={() => this.closeModal()}>No</Button>
+            </ModalFooter>
+          </Modal>
+        }
       </Screen>
     )
   }
@@ -87,7 +103,7 @@ class Task extends Component {
     }
   }
 
-  onClickDelete() {
+  deleteTask() {
     const { deleteTask } = this.props
 
     const task = this.getTask()
@@ -98,6 +114,14 @@ class Task extends Component {
     this.setState({deleting: true})
 
     deleteTask(task.id)
+  }
+
+  closeModal() {
+    this.setState({modalOpen: false})
+  }
+
+  openModal() {
+    this.setState({modalOpen: true})
   }
 }
 
