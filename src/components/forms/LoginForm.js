@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
             placeholder="john@me.com"
             component={'input'}
             tag={Field}
-            autocomplete={'off'}
+            autoComplete={'off'}
           />
         </FormGroup>
         <FormGroup>
@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
             name="password"
             component={'input'}
             tag={Field}
-            autocomplete={'off'}
+            autoComplete={'off'}
           />
         </FormGroup>
         <Button>Submit</Button>

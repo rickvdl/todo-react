@@ -3,17 +3,8 @@ import {
   withRouter,
   NavLink
 } from 'react-router-dom'
-
-const Task = props => {
-  const { id, name, completed } = props
-  const url = `/${id}`
-
-  return (
-    <div>
-      <NavLink to={url}>{name} {completed ? 'X' : ''}</NavLink>
-    </div>
-  )
-}
+import { Table } from 'reactstrap'
+import Task from '../../components/Task'
 
 class Tasks extends Component {
 
@@ -27,13 +18,26 @@ class Tasks extends Component {
     return (
       <div>
         <h1>Tasks</h1>
-        <NavLink to="/new">New</NavLink>
-        <button onClick={() => this.props.logout()}>Logout</button>
-        {error &&
-          <h3>{error}</h3>
-        }
+          {error &&
+            <h3>{error}</h3>
+          }
 
-        {tasks.map(task => <Task key={String(task.id)} {...task}/>)}
+          {tasks.length > 0 &&
+            <Table hover={true}>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tasks.map(task => <Task key={String(task.id)} {...task}/>)}
+              </tbody>
+            </Table>
+          }
+        <NavLink to="/task/new">New</NavLink>
+        <button onClick={() => this.props.logout()}>Logout</button>
       </div>
     )
   }
