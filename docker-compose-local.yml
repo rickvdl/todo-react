@@ -1,14 +1,14 @@
 version: '3'
 services:
   api:
-    image: rickvdl/todo-api:latest
+    build: ./api
     ports:
       - "3001:3001"
     environment:
       - HTTP_PORT=3001
   
   app:
-    image: rickvdl/todo-app:latest
+    build: ./app
     ports:
       - "3000:3000"
     environment:
