@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Route,
   withRouter,
@@ -11,6 +11,7 @@ import Tasks from './containers/Tasks'
 import Task from './containers/Task'
 import NewTask from './containers/Tasks/new'
 import NotFound from './containers/NotFound'
+import Register from './containers/Register'
 import { setToken } from './actions'
 
 class App extends Component {
@@ -24,9 +25,12 @@ class App extends Component {
     const authenticated = token !== 'null' && token !== null
 
     return (
-      <Switch>
+      <Fragment>
         {!authenticated &&
-          <Route path='/' component={Login}/>
+          <Switch>
+            <Route exact path='/register' component={Register}/>
+            <Route path='/' component={Login}/>
+          </Switch>
         }
         {authenticated &&
           <Switch>
@@ -36,7 +40,7 @@ class App extends Component {
             <Route path='/' component={NotFound}/>
           </Switch>
         }
-      </Switch>
+      </Fragment>
     )
   }
 }

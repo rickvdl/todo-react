@@ -1,3 +1,7 @@
+export const REGISTER = 'REGISTER'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_FAIL = 'REGISTER_FAIL'
+
 export const LOGIN = 'LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
@@ -43,6 +47,23 @@ export const setToken = (token) => {
     type: SET_TOKEN,
     payload: {
       token
+    }
+  }
+}
+
+export const register = (name, email, password) => {
+  return {
+    type: REGISTER,
+    payload: {
+      request: {
+        url: '/user',
+        method: 'post',
+        data: {
+          name,
+          email,
+          password
+        }
+      }
     }
   }
 }

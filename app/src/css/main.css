@@ -10,12 +10,12 @@ table tr > td {
  cursor: pointer; 
 }
 
-#login {
+#login, #register {
   height: calc(100vh - 50px);
   align-items: center;
 }
 
-#login, #tasks, #newTask, #task {
+#login, #register, #tasks, #newTask, #task {
   display: flex;
   justify-content: center;
 }
@@ -29,6 +29,10 @@ table tr > td {
   margin-left: 10px;
 }
 
+#loginFormContainer, #registerFormContainer {
+  max-width: 90%;
+}
+
 @media (max-width: 576px) { 
   #tasksContainer, #newTaskContainer, #taskContainer{
     width: 100%;
@@ -36,19 +40,19 @@ table tr > td {
 }
 
 @media (min-width: 576px) { 
-  #loginFormContainer, #tasksContainer, #newTaskContainer, #taskContainer {
+  #loginFormContainer, #tasksContainer, #newTaskContainer, #taskContainer, #registerFormContainer {
     width: 100%;
   }
 }
 
 @media (min-width: 768px) { 
-  #loginFormContainer, #tasksContainer, #newTaskContainer, #taskContainer {
+  #loginFormContainer, #tasksContainer, #newTaskContainer, #taskContainer, #registerFormContainer {
     width: 75%;
   }
 }
 
 @media (min-width: 992px) { 
-  #loginFormContainer {
+  #loginFormContainer, #registerFormContainer {
     max-width: 50%;
   }
 }
