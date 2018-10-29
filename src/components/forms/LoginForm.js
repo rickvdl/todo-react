@@ -1,6 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import Input from './Input'
+import { Button, Form, FormGroup, Label, Input as InputR } from 'reactstrap'
+import { email } from './validators'
 
 class LoginForm extends React.Component {
 
@@ -11,19 +13,18 @@ class LoginForm extends React.Component {
       <Form onSubmit={handleSubmit}>
         <input type='hidden' value='something'/>
         <FormGroup>
-          <Label for="email">Email</Label>
-          <Input
-            type="email" 
-            name="email"
+          <Field
+            name={'email'}
+            type={'email'}
             placeholder="john@me.com"
-            component={'input'}
-            tag={Field}
-            autoComplete={'off'}
+            label={'Email'}
+            component={Input}
+            validate={email}
           />
         </FormGroup>
         <FormGroup>
           <Label for="password">Password</Label>
-          <Input
+          <InputR
             type="password" 
             name="password"
             component={'input'}
