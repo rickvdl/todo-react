@@ -1,5 +1,6 @@
 import NewTaskScreen from '../../screens/Tasks/new'
 import { connect } from 'react-redux'
+import { newTask } from '../../actions'
 
 const mapStateToProps = state => {
   return {
@@ -8,4 +9,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(NewTaskScreen)
+const mapDispatchToProps = {
+  newTask,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTaskScreen)
