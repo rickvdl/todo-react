@@ -8,7 +8,7 @@ import LoginForm from '../components/forms/LoginForm'
 class Login extends Component {
 
   render() {
-    const { error, loading, auth } = this.props
+    const { auth } = this.props
 
     if (auth.token) {
       return (<Redirect to={'/'}/>)
@@ -20,8 +20,8 @@ class Login extends Component {
 
         <LoginForm onSubmit={(values) => this.submitForm(values)} />
 
-        {error &&
-          <p>{error}</p>
+        {auth.error &&
+          <p>{auth.error}</p>
         }
       </div>
     )
