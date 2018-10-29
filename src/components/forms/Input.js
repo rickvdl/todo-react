@@ -1,12 +1,12 @@
 import React from 'react'
 import { Label, Input as ReactstrapInput, FormFeedback } from 'reactstrap'
 
-const Input = ({ name, input, placeholder, label, type, meta: { touched, error, warning }}) => (
+const Input = ({ name, input, placeholder, label, type, showValid, meta: { touched, error, warning }}) => (
   <div>
     <Label for={name}>{label}</Label>
     <ReactstrapInput
-      invalid={touched && error}
-      valid={touched && !error && input.value !== ''}
+      invalid={touched && error !== undefined}
+      valid={showValid === true && touched && !error && input.value !== ''}
       type={type} 
       name={name}
       placeholder={placeholder}

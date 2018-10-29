@@ -1,13 +1,13 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import Input from './Input'
-import { Button, Form, FormGroup, Label, Input as InputR } from 'reactstrap'
-import { email } from './validators'
+import { Button, Form, FormGroup } from 'reactstrap'
+import { email, loginPassword } from './validators'
 
 class LoginForm extends React.Component {
 
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit, valid, invalid, submitting, pristine } = this.props
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -23,16 +23,15 @@ class LoginForm extends React.Component {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="password">Password</Label>
-          <InputR
-            type="password" 
-            name="password"
-            component={'input'}
-            tag={Field}
-            autoComplete={'off'}
+          <Field
+            name={'password'}
+            type={'password'}
+            label={'Password'}
+            component={Input}
+            validate={loginPassword}
           />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button color={'primary'} disabled={pristine || invalid || submitting || !valid}>Log in</Button>
       </Form>
     )
   }
