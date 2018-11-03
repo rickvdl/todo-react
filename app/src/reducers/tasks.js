@@ -23,7 +23,7 @@ export default (state = initialState, action: Object) => {
   case GET_TASKS_SUCCESS:
     return {...state, tasks: sortTasks(action.payload.data), error: null}
   case GET_TASKS_FAIL:
-    return {...state, error: action.error.message}
+    return {...state, error: action.error.data}
   case COMPLETE_TASK_SUCCESS:
   case UNCOMPLETE_TASK_SUCCESS:
     const completedTaskId = action.payload.data.id
@@ -32,7 +32,7 @@ export default (state = initialState, action: Object) => {
   case COMPLETE_TASK_FAIL:
   case UNCOMPLETE_TASK_FAIL:
   case DELETE_TASK_FAIL:
-    return {...state, error: action.error.message}
+    return {...state, error: action.error.data}
   case DELETE_TASK_SUCCESS:
     const deletedTaskId = action.payload.data.id
     return {...state, error: null, tasks: state.tasks.filter(task => task.id != deletedTaskId)}

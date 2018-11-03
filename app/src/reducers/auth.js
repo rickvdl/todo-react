@@ -34,7 +34,7 @@ export default (state = initialState, action: Object) => {
     return {...state, token, ...defaultRequestState}
   case LOGIN_FAIL:
     removeToken()
-    return {...state, ...defaultRequestState, error: action.error.message}
+    return {...state, ...defaultRequestState, error: action.error.data}
   case LOGOUT_SUCCESS:
   case REMOVE_TOKEN:
   case LOGOUT_FAIL:
@@ -43,7 +43,7 @@ export default (state = initialState, action: Object) => {
   case REGISTER_SUCCESS:
     return {...state, ...defaultRequestState, success: true}
   case REGISTER_FAIL:
-  return {...state, ...defaultRequestState, error: action.error.message}
+  return {...state, ...defaultRequestState, error: action.error.data}
   default:
     return state
   }

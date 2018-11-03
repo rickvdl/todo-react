@@ -12,6 +12,33 @@ export const DELETE_TASK = 'DELETE_TASK'
 export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
 export const DELETE_TASK_FAIL = 'DELETE_TASK_FAIL'
 
+export const NEW_TASK = 'NEW_TASK'
+export const NEW_TASK_SUCCESS = 'NEW_TASK_SUCCESS'
+export const NEW_TASK_FAIL = 'NEW_TASK_FAIL'
+
+export const CLEANUP_TASK = 'CLEANUP_TASK'
+
+export const newTask = (name, description) => {
+  return {
+    type: NEW_TASK,
+    payload: {
+      request: {
+        url: '/task',
+        method: 'post',
+        data: {
+          name,
+          description
+        }
+      }
+    },
+    options: {
+      onSuccess({ dispatch }) {
+        dispatch({ type: GET_TASKS });
+     },
+    }
+  }
+}
+
 export const completeTask = (id) => {
   return {
     type: COMPLETE_TASK,
@@ -50,5 +77,12 @@ export const deleteTask = (id) => {
         dispatch({ type: 'GET_TASKS' });
      },
     }
+  }
+}
+
+export const cleanupTask = () => {
+  return {
+    type: CLEANUP_TASK,
+    payload: {}
   }
 }

@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { REMOVE_TOKEN } from '../actions'
 
+const baseURL = 'http://127.0.0.1:3001'
+
 export const api = axios.create({
-  baseURL: 'http://127.0.0.1:3001',
+  baseURL,
   responseType: 'json',
   requestType: 'json'
 })
@@ -27,7 +29,7 @@ export const apiMiddlewareOptions = {
         },
         error: ({ dispatch }, error) => {
           if (error.response === undefined) {
-            return Promise.reject(error)
+            return Promise.reject({message: `No response, is the API running on ${baseURL}?`})
           }
 
           if (error.response.status === 401) {
@@ -38,7 +40,7 @@ export const apiMiddlewareOptions = {
           if (error.response.data.error.message) {
             message = error.response.data.error.message
           }
-          const newError = {...error, message}
+          const newError = {...error, data: message}
 
           return Promise.reject(newError)
         }
