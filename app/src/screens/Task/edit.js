@@ -55,6 +55,18 @@ class EditTask extends Component {
             }
           </Card>
         </div>
+        {task &&
+          <Modal isOpen={this.state.modalOpen} toggle={() => this.closeModal()}>
+            <ModalHeader>Delete task</ModalHeader>
+            <ModalBody>
+              Are you sure that you want to delete task <q>{task.name}</q>?
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={() => this.deleteTask()}>Yes!</Button>
+              <Button color="secondary" onClick={() => this.closeModal()}>No</Button>
+            </ModalFooter>
+          </Modal>
+        }
       </Screen>
     )
   }
