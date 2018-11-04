@@ -1,6 +1,6 @@
 import LoginScreen from '../screens/Login'
 import { connect } from 'react-redux'
-import { login } from '../actions'
+import { login, cleanAuthState } from '../actions'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  login
+  login,
+  cleanAuthState
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginScreen))

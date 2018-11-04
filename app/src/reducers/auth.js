@@ -8,6 +8,7 @@ import {
   REMOVE_TOKEN,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  CLEAN_AUTH_STATE
 } from '../actions'
 
 const initialState = {
@@ -44,6 +45,8 @@ export default (state = initialState, action: Object) => {
     return {...state, ...defaultRequestState, success: true}
   case REGISTER_FAIL:
   return {...state, ...defaultRequestState, error: action.error.data}
+  case CLEAN_AUTH_STATE:
+    return {...state, ...defaultRequestState}
   default:
     return state
   }

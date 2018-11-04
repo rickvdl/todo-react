@@ -6,7 +6,7 @@ import {
 import { Table } from 'reactstrap'
 import Task from '../../components/Task'
 import Screen from '../../components/Screen'
-import { Card, Button } from 'reactstrap'
+import { Card, Button, Alert } from 'reactstrap'
 
 class Tasks extends Component {
 
@@ -23,7 +23,7 @@ class Tasks extends Component {
           <Card id={'tasksContainer'} body>
             <h1>Tasks <NavLink id={'newTaskButton'} to="/task/new"><Button outline size={'sm'} color="success">+ New task</Button></NavLink></h1>
               {error &&
-                <h3>{error}</h3>
+                <Alert color="danger">{error}</Alert>
               }
 
               {tasks.length > 0 ?

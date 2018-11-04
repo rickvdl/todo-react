@@ -7,6 +7,10 @@ import LoginForm from '../components/forms/LoginForm'
 import { Alert, Card } from 'reactstrap'
 
 class Login extends Component {
+
+  componentWillUnmount() {
+    this.props.cleanAuthState()
+  }
   
   render() {
     const { auth } = this.props

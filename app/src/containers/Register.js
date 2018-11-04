@@ -1,6 +1,6 @@
 import RegisterScreen from '../screens/Register'
 import { connect } from 'react-redux'
-import { register } from '../actions'
+import { register, cleanAuthState } from '../actions'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  register
+  register,
+  cleanAuthState
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterScreen))

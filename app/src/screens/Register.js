@@ -8,6 +8,10 @@ import RegisterForm from '../components/forms/RegisterForm'
 import { Alert, Card } from 'reactstrap'
 
 class Register extends Component {
+
+  componentWillUnmount() {
+    this.props.cleanAuthState()
+  }
   
   render() {
     const { auth } = this.props

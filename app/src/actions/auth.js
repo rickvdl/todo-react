@@ -14,6 +14,8 @@ export const REMOVE_TOKEN = 'REMOVE_TOKEN'
 
 export const SET_TOKEN = 'SET_TOKEN'
 
+export const CLEAN_AUTH_STATE = 'CLEAN_AUTH_STATE'
+
 export const login = (email, password) => {
   return {
     type: LOGIN,
@@ -65,5 +67,11 @@ export const register = (name, email, password) => {
         }
       }
     }
+  }
+}
+
+export const cleanAuthState = () => {
+  return {
+    type: CLEAN_AUTH_STATE
   }
 }
