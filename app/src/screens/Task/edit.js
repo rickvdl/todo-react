@@ -23,7 +23,7 @@ class EditTask extends Component {
   }
 
   render() {
-    const { loadedTasks, deleting } = this.state
+    const { deleting } = this.state
     const { loading, error, task, success } = this.props
     
     if (deleting && !loading) {
@@ -41,7 +41,9 @@ class EditTask extends Component {
       <Screen>
         <div id={'newTask'}>
           <Card id={'newTaskContainer'}>
-            <h1>Edit task</h1>
+            {!this.notFound() &&
+              <h1>Edit task</h1>
+            }
             {error &&
               <Alert color="danger">{error}</Alert>
             }
@@ -49,23 +51,31 @@ class EditTask extends Component {
               ?
               <h2>Loading...</h2>
               :
-              <EditTaskForm onPressDelete={() => this.openModal()} task={task} onSubmit={(values) => this.submitForm(values)}/>
+              this.renderForm()
             }
           </Card>
         </div>
-        {task &&
-          <Modal isOpen={this.state.modalOpen} toggle={() => this.closeModal()}>
-            <ModalHeader>Delete task</ModalHeader>
-            <ModalBody>
-              Are you sure that you want to delete task <q>{task.name}</q>?
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" onClick={() => this.deleteTask()}>Yes!</Button>
-              <Button color="secondary" onClick={() => this.closeModal()}>No</Button>
-            </ModalFooter>
-          </Modal>
-        }
       </Screen>
+    )
+  }
+
+  notFound() {
+    return !this.props.task && this.state.loadedTasks === true
+  }
+
+  renderForm() {
+    const { task } = this.props
+
+    if (this.notFound()) {
+      return (<h2 style={{textAlign: 'center'}}>Not found</h2>)
+    }
+
+    if (!task) {
+      return (<h2 style={{textAlign: 'center'}}>Error</h2>)
+    }
+
+    return (
+      <EditTaskForm onPressDelete={() => this.openModal()} task={task} onSubmit={(values) => this.submitForm(values)}/>
     )
   }
 

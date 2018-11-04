@@ -39,7 +39,7 @@ class Task extends Component {
             }
 
             {(loadedTasks && !task) && 
-              <h2>Task not found</h2>
+              <h2 style={{textAlign: 'center'}}>Task not found</h2>
             }
 
             {task &&
