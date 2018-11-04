@@ -29,15 +29,15 @@ class Navigation extends React.Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="" onClick={(e) => e.preventDefault()}>Task manager</NavbarBrand>
+          <NavLink className={'navbar-brand'} to={'/'}>Task manager</NavLink>
           <NavbarToggler onClick={() => this.toggle()} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className={'nav-link'} to="/">Tasks</NavLink>
+                <NavLink exact className={'nav-link'} to="/">Tasks</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className={'nav-link'} to="/task/new">New task</NavLink>
+                <NavLink exact className={'nav-link'} to="/task/new">New task</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink onClick={(e) => this.onPressLogout(e)} className={'nav-link'} to="null">Logout</NavLink>
@@ -55,12 +55,8 @@ class Navigation extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {}
-}
-
 const mapDispatchToProps = {
   logout
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
+export default connect(null, mapDispatchToProps)(Navigation)
