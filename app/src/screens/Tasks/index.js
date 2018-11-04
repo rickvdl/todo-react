@@ -25,7 +25,7 @@ class Tasks extends Component {
               {error &&
                 <h3>{error}</h3>
               }
-
+              
               {tasks.length > 0 ?
                 <Table hover={true}>
                   <thead>
