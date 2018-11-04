@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   render() {
-    const { token, location } = this.props
+    const { token } = this.props
     const authenticated = token !== 'null' && token !== null
 
     return (
@@ -38,7 +38,7 @@ class App extends Component {
             <AuthenticatedRoute authenticated={authenticated} path='/' exact component={Tasks}/>
             <AuthenticatedRoute authenticated={authenticated} path='/task/new' exact component={NewTask}/>
             <AuthenticatedRoute authenticated={authenticated} path='/task/:id' exact component={Task}/>
-            <AuthenticatedRoute route={location} authenticated={authenticated} path='/task/:id/edit' exact component={EditTask}/>
+            <AuthenticatedRoute authenticated={authenticated} path='/task/:id/edit' exact component={EditTask}/>
             <Route path='/' component={NotFound}/>
           </Switch>
         }

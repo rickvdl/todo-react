@@ -8,6 +8,7 @@ import {
 const initialState = {
   loading: false,
   error: null,
+  success: false,
 }
 
 export default (state = initialState, action: Object) => {
