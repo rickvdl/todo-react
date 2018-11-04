@@ -31,6 +31,7 @@ Go the the directory of the `app/` or `api/`
 
 Run
 ```bash
+yarn install
 yarn dev
 ```
 
