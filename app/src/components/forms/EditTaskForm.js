@@ -19,37 +19,43 @@ class EditTaskForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, valid, invalid, pristine, submitting, task } = this.props
+    const { handleSubmit, valid, invalid, pristine, submitting, task, onPressDelete } = this.props
 
     return (
-      <Form onSubmit={handleSubmit}>
-        <input type='hidden' value='something'/>
-        <FormGroup>
-          <Field
-            type={'text'}
-            name={'name'}
-            label={'Name'}
-            value={task.name}
-            placeholder={'Clean the dishes'}
-            component={Input}
-            validate={taskName}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Field 
-            type={'textarea'}
-            name={'description'}
-            label={'Description'}
-            value={task.description}
-            placeholder={'Optional description'}
-            component={Input}
-          />
-        </FormGroup>
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <Button color="primary" disabled={pristine || invalid || submitting || !valid}>Update task</Button>
-          <NavLink id={'backToTasksButton'} to={`/task/${task.id}`}><Button outline  color="success">Back</Button></NavLink>
-        </div>
-      </Form>
+      task ?
+        <Form onSubmit={handleSubmit}>
+          <input type='hidden' value='something'/>
+          <FormGroup>
+            <Field
+              type={'text'}
+              name={'name'}
+              label={'Name'}
+              value={task.name}
+              placeholder={'Clean the dishes'}
+              component={Input}
+              validate={taskName}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Field 
+              type={'textarea'}
+              name={'description'}
+              label={'Description'}
+              value={task.description}
+              placeholder={'Optional description'}
+              component={Input}
+            />
+          </FormGroup>
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+              <Button color="primary" disabled={pristine || invalid || submitting || !valid}>Update task</Button>
+              <Button style={{marginLeft: 10}} color={'danger'} onClick={() => onPressDelete()}>Delete</Button>
+            </div>
+            <NavLink id={'backToTasksButton'} to={`/task/${task.id}`}><Button outline  color="success">Back</Button></NavLink>
+          </div>
+        </Form>
+        :
+        <div />
     )
   }
 }
