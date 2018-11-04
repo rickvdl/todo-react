@@ -29,8 +29,9 @@
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
     "build": "babel --copy-files src --out-dir dist",
-    "docker:build": "yarn build && docker build -t todo-api:latest .",
-    "docker:run": "docker run -d -p 3001:3001 -d todo-api:latest",
+    "docker:build": "yarn build && docker build -t rickvdl/todo-api:latest .",
+    "docker:run": "docker run -d -p 3001:3001 -d rickvdl/todo-api:latest",
+    "docker:push": "docker push rickvdl/todo-api:latest",
     "start": "NODE_ENV=production node index.js"
   }
 }
