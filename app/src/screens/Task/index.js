@@ -4,7 +4,7 @@ import {
   NavLink,
   Redirect
 } from 'react-router-dom'
-import Screen from '../components/Screen'
+import Screen from '../../components/Screen'
 import { Card, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 class Task extends Component {
@@ -36,16 +36,16 @@ class Task extends Component {
         <div id={'task'}>
           <Card id={'taskContainer'}>
             {loading &&
-              <p>Laden...</p>
+              <h2>Loading...</h2>
             }
 
             {(loadedTasks && !task) && 
-              <p>Task not found</p>
+              <h2>Task not found</h2>
             }
 
             {task &&
               <Fragment>
-                <h2>{task.name}</h2>
+                <h2>{task.name} <NavLink id={'newTaskButton'} to={`/task/${task.id}/edit`}><Button size={'sm'} color="warning">Edit</Button></NavLink></h2>
                 <hr />
                 {task.description ?
                   <p>{task.description}</p>

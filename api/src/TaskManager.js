@@ -39,6 +39,22 @@ export default class TaskManager {
     this.dataManager.store('tasks', tasks)
   }
 
+  updateTask(id, userId, name, description) {
+    const task = this.getAllTasks().find(task => task.id == id && task.userId == userId)
+    
+    if (!task) {
+      throw 'Task not found'
+    }
+
+    if (name.length === 0 || name === '') {
+      throw 'Name can not be empty'
+    }
+    
+    const newTask = {...task, name, description}
+    const tasks = this.getAllTasks().map(t => t.id === newTask.id ? newTask : t)
+    this.dataManager.store('tasks', tasks)
+  }
+
   completeTask(id, userId) {
     this.setTaskCompleted(id, userId, true)
   }

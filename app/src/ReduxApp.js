@@ -12,6 +12,7 @@ import Task from './containers/Task'
 import NewTask from './containers/Tasks/new'
 import NotFound from './containers/NotFound'
 import Register from './containers/Register'
+import EditTask from './containers/Task/edit'
 import { setToken } from './actions'
 
 class App extends Component {
@@ -21,7 +22,7 @@ class App extends Component {
   }
 
   render() {
-    const { token } = this.props
+    const { token, location } = this.props
     const authenticated = token !== 'null' && token !== null
 
     return (
@@ -35,8 +36,9 @@ class App extends Component {
         {authenticated &&
           <Switch>
             <AuthenticatedRoute authenticated={authenticated} path='/' exact component={Tasks}/>
-            <AuthenticatedRoute authenticated={authenticated} path='/task/new' component={NewTask}/>
-            <AuthenticatedRoute authenticated={authenticated} path='/task/:id' component={Task}/>
+            <AuthenticatedRoute authenticated={authenticated} path='/task/new' exact component={NewTask}/>
+            <AuthenticatedRoute authenticated={authenticated} path='/task/:id' exact component={Task}/>
+            <AuthenticatedRoute route={location} authenticated={authenticated} path='/task/:id/edit' exact component={EditTask}/>
             <Route path='/' component={NotFound}/>
           </Switch>
         }

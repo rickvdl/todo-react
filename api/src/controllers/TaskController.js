@@ -17,7 +17,7 @@ class TaskController {
     }
 
     const id = request.taskManager.createTask(request.user.id, name, description)
-    response.send(201, {success: true, id})
+    response.send(201, {success: true, id: parseInt(id)})
   }
 
   @web.del('/task/:id')
@@ -26,7 +26,21 @@ class TaskController {
 
     try {
       request.taskManager.deleteTask(id, request.user.id)
-      response.status(202).send({id})
+      response.status(202).send({id: parseInt(id)})
+    }
+    catch (error) {
+      throw HTTPErrors.BadRequest(error)
+    }
+  }
+
+  @web.put('/task/:id')
+  updateTask(request, response) {
+    const { id } = request.params
+    const { name, description } = request.body
+
+    try {
+      request.taskManager.updateTask(id, request.user.id, name, description)
+      response.status(202).send({id: parseInt(id)})
     }
     catch (error) {
       throw HTTPErrors.BadRequest(error)
@@ -39,7 +53,7 @@ class TaskController {
 
     try {
       request.taskManager.completeTask(id, request.user.id)
-      response.status(202).send({id})
+      response.status(202).send({id: parseInt(id)})
     }
     catch (error) {
       throw HTTPErrors.BadRequest(error)
@@ -52,7 +66,7 @@ class TaskController {
 
     try {
       request.taskManager.uncompleteTask(id, request.user.id)
-      response.status(202).send({id})
+      response.status(202).send({id: parseInt(id)})
     }
     catch (error) {
       throw HTTPErrors.BadRequest(error)
