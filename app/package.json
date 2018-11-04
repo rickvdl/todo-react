@@ -22,9 +22,13 @@
   "scripts": {
     "start": "node index.js",
     "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "docker:build": "yarn build && docker build -t todo:latest .",
-    "docker:run": "docker run -d -p 3000:3000 -d todo:latest"
+    "build:production": "react-scripts build",
+    "docker:build-dev": "yarn build:production && docker build -t rickvdl/todo-app:dev .",
+    "docker:push-dev": "docker push rickvdl/todo-app:dev",
+    "docker:run-dev": "docker run -d -p 3000:3000 -d rickvdl/todo-app:dev",
+    "docker:build-prod": "yarn build:production && docker build -t rickvdl/todo-app:latest .",
+    "docker:push-prod": "docker push rickvdl/todo-app:latest",
+    "docker:run-prod": "docker run -d -p 3000:3000 -d rickvdl/todo-app:latest"
   },
   "eslintConfig": {
     "extends": "react-app"
